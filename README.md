@@ -1,9 +1,5 @@
 # SparkSupportDockerTask
 
-1. Create a custom bridge network with  the name "mynet"
-2. Create two docker containers with the above custom network with the alpine image in detached mode.
-3.  Ping the containers each other by using the hostname.
-
 
 >docker network create -d bridge mynet
 
@@ -23,11 +19,8 @@ NETWORK ID       NAME       DRIVER      SCOPE
 
 
 
->docker network inspect mynet
 
 
->docker pull alpine
->
 
 >docker run -dit --name alpine1 --network mynet alpine ash
 >
@@ -39,7 +32,27 @@ NETWORK ID       NAME       DRIVER      SCOPE
 
 >docker attach alpine1
 
->ping −c 3 alpine2
+#ping −c 3 alpine2
+
+#ping -c 3 google.com
+
+
+PING google.com (142.250.67.78): 56 data bytes
+
+64 bytes from 142.250.67.78: seq=0 ttl=37 time=64.186 ms
+
+64 bytes from 142.250.67.78: seq=1 ttl=37 time=24.216 ms
+
+64 bytes from 142.250.67.78: seq=2 ttl=37 time=24.379 ms
+
+
+Endpoint and ping result
+
+--- google.com ping statistics ---
+
+3 packets transmitted, 3 packets received, 0% packet loss
+
+round-trip min/avg/max = 24.216/37.593/64.186 ms
 
 
 
